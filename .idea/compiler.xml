@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="account" />
+        <module name="admin" />
+        <module name="eureka3000" />
+        <module name="frontEnd" />
+        <module name="order" />
+        <module name="product" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="account" target="1.8" />
+      <module name="admin" target="1.8" />
+      <module name="eureka3000" target="1.8" />
+      <module name="frontEnd" target="1.8" />
+      <module name="luban-vip-project" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="product" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
