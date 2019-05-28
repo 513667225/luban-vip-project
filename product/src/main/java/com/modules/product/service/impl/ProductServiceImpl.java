@@ -30,11 +30,12 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public R updateStock(Map<String, Object> map) {
+    public R updateStock(Map<String, Object> map) throws Exception {
         Product product = new Product();
-        product.setId((Integer) map.get("productId"));
-        product.setStock((Integer) map.get("stock"));
-        mapper.updateById(product);
+        int i = mapper.updateStock(map);
+        if (i==0){
+            throw new Exception("库存不足");
+        }
         return R.success("success");
     }
 }

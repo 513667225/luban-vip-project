@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,15 @@ public class OrderController {
         order.setAmount(nowPrice*count);
         order.setFee(5D);
         order.setQuantity(count+"");
+        order.setCreatedate(new Date());
         //TODO 用户登陆
         return   service.placeOrder(order,count,productId);
+    }
+
+
+    @RequestMapping("/getOrder")
+    public R getOrder(@RequestParam Map<String,Object> map){
+
+        return service.gerOrder(map);
     }
 }

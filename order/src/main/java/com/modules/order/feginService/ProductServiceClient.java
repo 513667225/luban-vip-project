@@ -17,5 +17,5 @@ public interface ProductServiceClient {
     public R getProduct(@RequestParam("id") String id);
 
     @RequestMapping("/product/updateStock")
-    public R updateInventory(@RequestParam String productId,@RequestParam int stock);
+    public R updateInventory(@RequestParam("productId") String productId,@RequestParam("stock") int stock);
 }

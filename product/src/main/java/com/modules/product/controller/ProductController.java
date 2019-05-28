@@ -34,7 +34,8 @@ public class ProductController {
 
 
     @RequestMapping("/updateStock")
-    public R updateStock(@RequestParam Map<String,Object> map){
-        return service.updateStock(map);
+    public R updateStock(@RequestParam Map<String,Object> map) throws Exception{
+            return service.updateStock(map);
+
     }
 }

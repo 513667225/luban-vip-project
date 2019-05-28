@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.modules.product.mapper.ProductMapper">
 
+    <update id="updateStock" parameterType="Map">
+        update product set   stock= stock - #{stock} WHERE  id = #{productId} and  (stock - #{stock})>0
+
+    </update>
+
 </mapper>

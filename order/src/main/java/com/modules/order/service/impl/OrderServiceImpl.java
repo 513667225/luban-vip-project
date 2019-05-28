@@ -1,5 +1,7 @@
 package com.modules.order.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.modules.order.entity.Order;
 import com.modules.order.feginService.ProductServiceClient;
 import com.modules.order.mapper.OrderMapper;
@@ -36,5 +38,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
          mapper.insert(order);
         productServiceClient.updateInventory(productId,count);
         return R.success("success");
+    }
+
+    @Override
+    public R gerOrder(Map<String, Object> map) {
+        Page<Order> page = new Page(Integer.parseInt((String)map.get("page")),Integer.parseInt((String)map.get("limit")));
+        IPage<Order> orderIPage = mapper.selectPage(page,null);
+        return R.success("success",orderIPage.getRecords()).set("count",orderIPage.getTotal());
     }
 }

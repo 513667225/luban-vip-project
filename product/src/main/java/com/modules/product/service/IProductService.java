@@ -18,5 +18,5 @@ public interface IProductService extends IService<Product> {
 
     public R gerProduct(Map<String,Object> map);
 
-    public R updateStock(Map<String,Object> map);
+    public R updateStock(Map<String,Object> map) throws Exception;
 }
