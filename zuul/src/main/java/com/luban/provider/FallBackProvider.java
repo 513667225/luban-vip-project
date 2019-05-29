@@ -21,20 +21,20 @@ import java.io.InputStream;
 public class FallBackProvider implements FallbackProvider {
     @Override
     public String getRoute() {
-        return "server-power";
+        return "*";
     }
 
     @Override
     public ClientHttpResponse fallbackResponse(String route, final Throwable cause) {
 
         if (cause instanceof HystrixTimeoutException) {
-            return response(HttpStatus.GATEWAY_TIMEOUT);
+            return response(HttpStatus.GATEWAY_TIMEOUT,cause);
         } else {
-            return response(HttpStatus.INTERNAL_SERVER_ERROR);
+            return response(HttpStatus.INTERNAL_SERVER_ERROR,cause);
         }
     }
 
-    private ClientHttpResponse response(final HttpStatus status) {
+    private ClientHttpResponse response(final HttpStatus status,Throwable cause) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
@@ -57,7 +57,7 @@ public class FallBackProvider implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                return new ByteArrayInputStream("系统繁忙，稍后再试".getBytes());
+                return new ByteArrayInputStream(cause.getMessage().getBytes());
             }
 
             @Override
