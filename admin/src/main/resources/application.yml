@@ -14,3 +14,7 @@ eureka:
 spring:
   application:
     name: server-admin #此实例注册到eureka服务端的name
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("server-product")
 public interface ProductServiceClient {
 
-    @RequestMapping("/product/getProduct")
+    @RequestMapping("/getProduct")
     public R getProduct(@RequestParam("id") String id);
 
-    @RequestMapping("/product/updateStock")
+    @RequestMapping("/updateStock")
     public R updateInventory(@RequestParam("productId") String productId,@RequestParam("stock") int stock);
 }

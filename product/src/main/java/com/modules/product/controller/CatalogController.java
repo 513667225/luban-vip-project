@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-05-23
  */
 @RestController
-@RequestMapping("/product/catalog")
+@RequestMapping("/catalog")
 public class CatalogController {
 
 }

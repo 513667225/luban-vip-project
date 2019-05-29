@@ -19,7 +19,6 @@ import java.util.Map;
  * @since 2019-05-23
  */
 @RestController
-@RequestMapping("/product")
 public class ProductController {
 
 

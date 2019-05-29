@@ -3,7 +3,7 @@
 <mapper namespace="com.modules.product.mapper.ProductMapper">
 
     <update id="updateStock" parameterType="Map">
-        update product set   stock= stock - #{stock} WHERE  id = #{productId} and  (stock - #{stock})>0
+        update product set   stock= stock - #{stock} WHERE  id = #{productId} and  (stock - #{stock})>=0
 
     </update>
 

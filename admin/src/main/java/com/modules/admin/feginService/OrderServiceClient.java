@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("server-order")
 public interface OrderServiceClient {
 
-    @RequestMapping("/order/getOrder")
+    @RequestMapping("/getOrder")
     public R getOrder(@RequestParam("page")Object page,@RequestParam("limit") Object limit);
 
 }
