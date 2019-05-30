@@ -55,7 +55,7 @@ public class MyBatisConfig {
         dataSource.setDriverClassName(Driver.class.getName());
         dataSource.setPassword("1234");
         dataSource.setUsername("root");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/vip_project");
+        dataSource.setUrl("jdbc:mysql://192.168.0.121:3306/vip_project");
         return dataSource;
     }
 

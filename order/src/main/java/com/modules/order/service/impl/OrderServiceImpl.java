@@ -8,6 +8,7 @@ import com.modules.order.mapper.OrderMapper;
 import com.modules.order.service.IOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.modules.order.util.R;
+import com.modules.order.util.SendMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,12 +32,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     OrderMapper mapper;
 
     @Autowired
+    SendMessageUtil sendMessageUtil;
+
+    @Autowired
     ProductServiceClient productServiceClient;
 
     @Override
     public R placeOrder(Order order,int count,String productId) {
          mapper.insert(order);
-        productServiceClient.updateInventory(productId,count);
+         //发送消息
+        order.setId(Integer.parseInt(productId));
+        sendMessageUtil.placeOrderMessage(order);
         return R.success("success");
     }
 

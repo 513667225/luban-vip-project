@@ -31,7 +31,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Override
     public R updateStock(Map<String, Object> map) throws Exception {
-        Product product = new Product();
         int i = mapper.updateStock(map);
         if (i==0){
             throw new Exception("库存不足");

@@ -39,7 +39,7 @@ public class OrderController {
     RedisUtil redisUtil;
 
     @RequestMapping("/placeOrder")
-    public R placeOrder(@RequestParam String productId, @RequestParam int count, HttpServletRequest request){
+    public R placeOrder( String productId,  int count, HttpServletRequest request){
         String login_key = request.getHeader("login_key");
         if (StringUtils.isEmpty(login_key)){
             return  R.error("用户未登录");
