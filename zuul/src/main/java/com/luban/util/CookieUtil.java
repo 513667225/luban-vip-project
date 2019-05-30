@@ -30,7 +30,9 @@ public class CookieUtil {
     public  static String serLoginCookie(HttpServletRequest request, HttpServletResponse response){
         String uuid = UUID.randomUUID().toString();
         Cookie cookie = new Cookie(COOKIE_KEY,uuid);
-        cookie.setHttpOnly(true);
+//        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+//        cookie.setDomain("www.lll.com");
         response.addCookie(cookie);
         return uuid;
     }

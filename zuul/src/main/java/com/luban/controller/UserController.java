@@ -28,7 +28,7 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    RedisUtil redisUtil;
+     RedisUtil redisUtil;
 
     @Autowired
     AdminFeginService adminFeginService;
@@ -53,9 +53,16 @@ public class UserController {
             return R.error("密码不正确");
         }
         String s = CookieUtil.serLoginCookie(request, response);
-        redisUtil.set(s,map);
+        redisUtil.set(s,mapUser);
 //        request.getSession().setAttribute(USER_KEY,map);
         return R.success();
+    }
+
+
+    @RequestMapping("/getUser")
+    public  Object getUser(HttpServletRequest request){
+
+        return R.success("success",CookieUtil.getLoginCookie(request));
     }
 
 }
