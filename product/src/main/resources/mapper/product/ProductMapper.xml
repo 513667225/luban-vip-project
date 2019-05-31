@@ -7,9 +7,4 @@
 
     </update>
 
-    <select resultType="Map"  id="getStockAll">
-
-        select id,stock from product
-    </select>
-
 </mapper>
