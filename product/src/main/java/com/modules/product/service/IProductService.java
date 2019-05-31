@@ -4,6 +4,7 @@ import com.modules.product.entity.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.modules.product.util.R;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +17,13 @@ import java.util.Map;
  */
 public interface IProductService extends IService<Product> {
 
-    public R gerProduct(Map<String,Object> map);
+    R gerProduct(Map<String,Object> map);
 
-    public R updateStock(Map<String,Object> map) throws Exception;
+    R updateStock(Map<String,Object> map) throws Exception;
+
+    R getProductByid(String id);
+
+   List<Map<String,Object>> getAllStocks();
+
+    R getAdminProduct(Map<String, Object> map,int page,int limit);
 }

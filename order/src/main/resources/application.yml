@@ -14,7 +14,3 @@ eureka:
 spring:
   application:
     name: server-order #此实例注册到eureka服务端的name
-  redis:
-    host: 192.168.0.121
-    port: 6379
-    timeout: 5000

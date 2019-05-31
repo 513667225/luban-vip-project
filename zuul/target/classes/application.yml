@@ -13,8 +13,28 @@ eureka:
 spring:
   application:
     name: zuul #此实例注册到eureka服务端的name
+  redis:
+  host: 192.168.0.121
+  port: 6379
+  timeout: 5000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
 
 zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
   prefix: /api
   ignored-services: "*"
 #  stripPrefix: false
@@ -28,7 +48,4 @@ zuul:
     admin:
       serviceId: server-admin
       path: /admin/**
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      timeout: 5000
+
