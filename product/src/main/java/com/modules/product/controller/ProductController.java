@@ -27,14 +27,23 @@ public class ProductController {
 
     @RequestMapping("/getProduct")
     public R getProduct(@RequestParam Map<String,Object> map){
-
         return service.gerProduct(map);
+    }
+
+
+    @RequestMapping("/getAdminProduct")
+    public R getAdminProduct(@RequestParam Map<String,Object> map,int page,int limit){
+        return service.getAdminProduct(map,page,limit);
+    }
+
+    @RequestMapping("/getProductByid")
+    public R getProductByid(String id){
+        return service.getProductByid(id);
     }
 
 
     @RequestMapping("/updateStock")
     public R updateStock(@RequestParam Map<String,Object> map) throws Exception{
             return service.updateStock(map);
-
     }
 }
