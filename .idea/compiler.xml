@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="admin" />
         <module name="eureka3000" />
-        <module name="frontEnd" />
         <module name="order" />
         <module name="product" />
         <module name="zuul" />

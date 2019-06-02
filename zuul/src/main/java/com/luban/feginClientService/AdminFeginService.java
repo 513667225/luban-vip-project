@@ -16,4 +16,7 @@ public interface AdminFeginService {
 
     @RequestMapping("/user/getUser")
     public R getUser(@RequestParam("username") String username);
+
+    @RequestMapping("/user/register")
+    public R register(@RequestParam("username") String username,@RequestParam("password")String password);
 }

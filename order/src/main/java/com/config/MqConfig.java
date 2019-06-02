@@ -1,12 +1,10 @@
 package com.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,18 +19,43 @@ public class MqConfig {
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("192.168.0.121",5672);
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost",5672);
         connectionFactory.setUsername("admin");
         connectionFactory.setPassword("admin");
         connectionFactory.setVirtualHost("testhost");
         //是否开启消息确认机制
-        //connectionFactory.setPublisherConfirms(true);
+        connectionFactory.setPublisherConfirms(true);
         return connectionFactory;
     }
+
+    public class MyReturnCallback implements RabbitTemplate.ReturnCallback {
+
+        @Override
+        public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+            System.out.println(message);
+            System.out.println(replyCode);
+            System.out.println(replyText);
+            System.out.println(exchange);
+            System.out.println(routingKey);
+        }
+    }
+
+    public class MyConfirmCallback implements RabbitTemplate.ConfirmCallback{
+
+        @Override
+        public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+            System.out.println(correlationData);
+            System.out.println(ack);
+            System.out.println(cause);
+        }
+    }
+
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setReturnCallback(new MyReturnCallback());
+        template.setConfirmCallback(new MyConfirmCallback());
         return template;
     }
 

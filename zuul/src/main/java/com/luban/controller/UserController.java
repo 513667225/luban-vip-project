@@ -59,10 +59,16 @@ public class UserController {
     }
 
 
-    @RequestMapping("/getUser")
-    public  Object getUser(HttpServletRequest request){
+    @RequestMapping("/register")
+    public  Object register(String username,String password,HttpServletRequest request,HttpServletResponse response){
+        if (StringUtils.isEmpty(username)){
+            return R.error("用户名不能为空");
+        }
+        if (StringUtils.isEmpty(password)){
+            return R.error("密码不能为空");
+        }
 
-        return R.success("success",CookieUtil.getLoginCookie(request));
+        return adminFeginService.register(username, password);
     }
 
 }

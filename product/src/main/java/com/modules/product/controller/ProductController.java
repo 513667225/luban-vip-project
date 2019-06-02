@@ -26,9 +26,18 @@ public class ProductController {
     IProductService service;
 
     @RequestMapping("/getProduct")
-    public R getProduct(@RequestParam Map<String,Object> map){
+    public R getProduct(@RequestParam Map<String,Object> map,int page,int limit){
+        return service.gerProduct(map,page,limit);
+    }
 
-        return service.gerProduct(map);
+    @RequestMapping("/getAdminProduct")
+    public R getAdminProduct(@RequestParam Map<String,Object> map,int page,int limit){
+        return service.getAdminProduct(map,page,limit);
+    }
+
+    @RequestMapping("/getProductByid")
+    public R getProductByid(String id){
+        return service.getProductByid(id);
     }
 
 

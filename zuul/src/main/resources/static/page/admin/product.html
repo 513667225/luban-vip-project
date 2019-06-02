@@ -29,8 +29,6 @@
     </div>
 
 
-
-
 </div>
 
 <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -68,16 +66,16 @@
         var layer = layui.layer;
         table.render({
             elem: '#test'
-            ,url:'/api/admin/menu/getOrder'
+            ,url:'/api/product/getAdminProduct'
             ,cols: [[
                 {field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
-                ,{field:'amount', title:'订单总金额', edit: 'text'}
-                ,{field:'fee', title:'运费', sort: true}
-                ,{field:'quantity', title:'订单总数量'}
-                ,{field:'account', title:'订单创建者'}
-                ,{field:'createdate', title:'订单创建时间',templet:function (row) {
-                        return createTime(row.createdate);
-                    }}
+                ,{field:'name', title:'商品名称', edit: 'text'}
+                ,{field:'price', title:'定价', sort: true}
+                ,{field:'nowPrice', title:'现价'}
+                ,{field:'status', title:'状态'}
+                ,{field:'sellcount', title:'销量库存'}
+                ,{field:'stock', title:'剩余库存数'}
+                ,{field:'nowPrice', title:'现价'}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]],
             response:{

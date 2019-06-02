@@ -2748,7 +2748,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * @const {string}
+	 * @systemConst {string}
 	 */
 	Hammer.VERSION = '2.0.4';
 

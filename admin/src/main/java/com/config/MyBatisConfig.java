@@ -2,8 +2,10 @@ package com.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.mysql.jdbc.Driver;
+import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +25,7 @@ public class MyBatisConfig {
     public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Autowired DataSource dataSource) throws IOException{
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-//        bean.setPlugins(new Interceptor[]{getMyPlugin()});
+        bean.setPlugins(new Interceptor[]{paginationInterceptor()});
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         String packageXMLConfigPath = PathMatchingResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + "/mapper/*/*.xml";
         bean.setMapperLocations(resolver.getResources(packageXMLConfigPath));
@@ -31,6 +33,13 @@ public class MyBatisConfig {
     }
 
 
+
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor  paginationInterceptor = new PaginationInterceptor();
+        paginationInterceptor.setDialectType("mysql");
+        return paginationInterceptor;
+    }
 
 
 

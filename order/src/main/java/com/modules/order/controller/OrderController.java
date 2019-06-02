@@ -6,6 +6,7 @@ import com.modules.order.feginService.ProductServiceClient;
 import com.modules.order.service.IOrderService;
 import com.modules.order.util.R;
 import com.modules.order.util.RedisUtil;
+import com.modules.order.util.SendMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,9 @@ public class OrderController {
     ProductServiceClient productServiceClient;
 
     @Autowired
+    SendMessageUtil sendMessageUtil;
+
+    @Autowired
     RedisUtil redisUtil;
 
     @RequestMapping("/placeOrder")
@@ -50,23 +54,28 @@ public class OrderController {
         }
 
         R result = productServiceClient.getProduct(productId);
-        List<Map<String,Object>> o = (List<Map<String, Object>>) result.get(R.DATA_KEY);
+        Map<String,Object> map = (Map<String, Object>) result.get(R.DATA_KEY);
         Order order = new Order();
-        Map<String, Object> map = o.get(0);
         double nowPrice = (double) map.get("nowPrice");
         order.setAmount(nowPrice*count);
         order.setFee(5D);
         order.setQuantity(count+"");
         order.setCreatedate(new Date());
-        //TODO 用户登陆
         order.setAccount((String) user.get("username"));
         return   service.placeOrder(order,count,productId);
     }
 
 
     @RequestMapping("/getOrder")
-    public R getOrder(@RequestParam Map<String,Object> map){
+    public R getOrder(@RequestParam Map<String,Object> map,int limit,int page){
 
-        return service.gerOrder(map);
+        return service.gerOrder(map,page,limit);
+    }
+
+
+    @RequestMapping("/test")
+    public R testSend(){
+        sendMessageUtil.send("test","stock");
+        return R.success("success");
     }
 }

@@ -31,8 +31,8 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
+						<a href="login.html" target="_top" class="h">亲，请登录</a>
+						<a href="register.html" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
@@ -1356,7 +1356,11 @@
                             type:"post",
                             data:{productId:id,count:$("#text_box").val()},
                             success:function(data){
-                                vue.$data.product=data.data[0];
+                                if (data.code==null){
+                                    alert(data);
+								}else{
+                                    alert(data.msg);
+								}
                             }
                         })
                     }
@@ -1365,11 +1369,11 @@
 
             $(function () {
                     $.ajax({
-                        url:"/api/product/getProduct?id="+getUrlParam("productId"),
+                        url:"/api/product/getProductByid?id="+getUrlParam("productId"),
                         dataType:"json",
                         type:"get",
                         success:function(data){
-                            vue.$data.product=data.data[0];
+                            vue.$data.product=data.data
                         }
                 })
 

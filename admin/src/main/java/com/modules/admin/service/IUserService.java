@@ -18,4 +18,8 @@ public interface IUserService extends IService<User> {
 
     public R getUser(Map<String,Object> map);
 
+    public R register(String username,String password);
+
+    public R getUserPage(int page,int limit,Map<String,Object> map);
+
 }

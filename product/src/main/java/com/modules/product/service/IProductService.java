@@ -16,7 +16,11 @@ import java.util.Map;
  */
 public interface IProductService extends IService<Product> {
 
-    public R gerProduct(Map<String,Object> map);
+    R gerProduct(Map<String,Object> map,int page,int limit);
 
-    public R updateStock(Map<String,Object> map) throws Exception;
+    R updateStock(Map<String,Object> map) throws Exception;
+
+    R getProductByid(String id);
+
+    R getAdminProduct(Map<String,Object> map,int page,int limit);
 }

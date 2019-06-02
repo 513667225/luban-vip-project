@@ -401,7 +401,7 @@
             });
             $(function () {
                 $.ajax({
-                    url:"/api/product/getProduct",
+                    url:"/api/product/getProduct?page=1&limit=10",
                     dataType:"json",
                     type:"get",
                     success:function(data){

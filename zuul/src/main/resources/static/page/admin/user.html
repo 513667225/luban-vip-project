@@ -68,15 +68,13 @@
         var layer = layui.layer;
         table.render({
             elem: '#test'
-            ,url:'/api/admin/menu/getOrder'
+            ,url:'/api/admin/user/getAllUser'
             ,cols: [[
                 {field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
-                ,{field:'amount', title:'订单总金额', edit: 'text'}
-                ,{field:'fee', title:'运费', sort: true}
-                ,{field:'quantity', title:'订单总数量'}
-                ,{field:'account', title:'订单创建者'}
-                ,{field:'createdate', title:'订单创建时间',templet:function (row) {
-                        return createTime(row.createdate);
+                ,{field:'username', title:'用户名', edit: 'text'}
+                ,{field:'password', title:'密码', sort: true}
+                ,{field:'createtime', title:'用户创建时间',templet:function (row) {
+                        return createTime(row.createtime);
                     }}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]],

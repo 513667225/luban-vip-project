@@ -35,4 +35,14 @@ public class UserController {
         return userService.getUser(map);
     }
 
+    @RequestMapping("/getAllUser")
+    public  Object getAllUser(@RequestParam Map<String,Object> map,int page,int limit){
+        return userService.getUserPage(page,limit,map);
+    }
+
+    @RequestMapping("/register")
+    public Object register(String username,String password){
+
+        return userService.register(username,password);
+    }
 }

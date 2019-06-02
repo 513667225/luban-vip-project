@@ -19,5 +19,5 @@ public interface IOrderService extends IService<Order> {
     public R placeOrder(Order order,int count,String productId);
 
 
-    public R gerOrder(Map<String,Object> map);
+    public R gerOrder(Map<String,Object> map,int limit,int page);
 }
